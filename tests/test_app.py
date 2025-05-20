@@ -2,6 +2,7 @@ from fastapi import status
 from fastapi.testclient import TestClient
 
 from fasttodo.app import app
+from fasttodo.static.htmls import ENDPOINT_HEALTH
 
 
 def test_root_deve_retornar_ok_e_ola_mundo():
@@ -24,16 +25,5 @@ def test_health_deve_retornar_ok_e_html():
     )  # Assert
 
     assert (
-        response.text
-        == """
-<html>
-<head>
-    <title>FastAPI Health Check</title>
-</head>
-<body>
-    <h1>FastAPI Health Check</h1>
-    <p>Status: OK</p>
-</body>
-</html>
-"""
+        response.text == ENDPOINT_HEALTH  # Assert
     )

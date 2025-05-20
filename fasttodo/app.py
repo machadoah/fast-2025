@@ -2,6 +2,7 @@ from fastapi import FastAPI, status
 from fastapi.responses import HTMLResponse
 
 from fasttodo.schemas import Message
+from fasttodo.static.htmls import ENDPOINT_HEALTH
 
 app = FastAPI()
 
@@ -15,14 +16,4 @@ def read_root():
     path='/health', status_code=status.HTTP_200_OK, response_class=HTMLResponse
 )
 def health():
-    return """
-<html>
-<head>
-    <title>FastAPI Health Check</title>
-</head>
-<body>
-    <h1>FastAPI Health Check</h1>
-    <p>Status: OK</p>
-</body>
-</html>
-"""
+    return ENDPOINT_HEALTH
