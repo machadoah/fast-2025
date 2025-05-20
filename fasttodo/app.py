@@ -1,8 +1,28 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, status
+from fastapi.responses import HTMLResponse
+
+from fasttodo.schemas import Message
 
 app = FastAPI()
 
 
-@app.get('/')
+@app.get(path='/', status_code=status.HTTP_200_OK, response_model=Message)
 def read_root():
     return {'message': 'Hello World'}
+
+
+@app.get(
+    path='/health', status_code=status.HTTP_200_OK, response_class=HTMLResponse
+)
+def health():
+    return """
+<html>
+<head>
+    <title>FastAPI Health Check</title>
+</head>
+<body>
+    <h1>FastAPI Health Check</h1>
+    <p>Status: OK</p>
+</body>
+</html>
+"""
